@@ -1,10 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 
 /**
  * Controller responsável por expor as rotas relacionadas aos projetos.
  * Fornece a listagem completa de projetos que abastece os sites `portfolio` e `ozyris`.
  */
+@ApiTags('Projetos')
 @Controller('projects')
 export class ProjectsController {
     constructor(private readonly projectsService: ProjectsService) {}
@@ -20,6 +22,11 @@ export class ProjectsController {
      * - href: Link de acesso externo
      */
     @Get()
+    @ApiOperation({ summary: 'Listar todos os projetos' })
+    @ApiResponse({
+        status: 200,
+        description: 'Lista de projetos retornada com sucesso.',
+    })
     getProjects() {
         return [
             {

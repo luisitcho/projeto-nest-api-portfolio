@@ -1,10 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TechnologiesService, Technology } from './technologies.service';
 
 /**
  * Controller responsável por gerenciar a rota de tecnologias/cursos.
  * Serve a listagem de competências, certificados e repositórios vinculados a cada tecnologia.
  */
+@ApiTags('Tecnologias')
 @Controller('technologies')
 export class TechnologiesController {
     constructor(private readonly technologiesService: TechnologiesService) {}
@@ -15,6 +17,11 @@ export class TechnologiesController {
      * certificados e repositórios de cursos realizados.
      */
     @Get()
+    @ApiOperation({ summary: 'Listar todas as tecnologias e cursos' })
+    @ApiResponse({
+        status: 200,
+        description: 'Lista de tecnologias retornada com sucesso.',
+    })
     getTechnologies(): Technology[] {
         return this.technologiesService.getTechnologies();
     }

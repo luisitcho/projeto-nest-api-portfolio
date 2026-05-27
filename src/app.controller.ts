@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 /**
  * Controller principal da API de Portfólio.
@@ -7,6 +8,7 @@ import { Controller, Get } from '@nestjs/common';
  * consumidos pelos sites `portfolio` e `ozyris`, eliminando a necessidade de manter arquivos JSON
  * estáticos e duplicados em cada repositório.
  */
+@ApiTags('Metadados')
 @Controller()
 export class AppController {
     /**
@@ -14,6 +16,11 @@ export class AppController {
      * Serve como ponto de entrada para verificar o status e a versão da API.
      */
     @Get()
+    @ApiOperation({ summary: 'Retorna os metadados da API' })
+    @ApiResponse({
+        status: 200,
+        description: 'Metadados da API retornados com sucesso.',
+    })
     getRoot() {
         return {
             name: 'Portfolio API',

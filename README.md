@@ -11,6 +11,7 @@ Esta API serve como uma **fonte única de verdade** (Single Source of Truth) par
 - [Arquitetura da Solução](#arquitetura-da-solucao)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Endpoints](#endpoints)
+- [Documentação Interativa (Swagger)](#documentacao-interativa-swagger)
 - [Estrutura do Modelo de Projeto](#estrutura-do-modelo-de-projeto)
 - [Estrutura do Modelo de Tecnologia](#estrutura-do-modelo-de-tecnologia)
 - [Como Executar o Projeto](#como-executar-o-projeto)
@@ -138,6 +139,18 @@ Retorna a lista completa de competências técnicas, incluindo status de conclus
   }
 ]
 ```
+
+---
+
+## Documentação Interativa (Swagger)
+
+A API possui uma interface interativa de documentação desenvolvida com o **Swagger (OpenAPI)**. Nela, você pode visualizar todos os endpoints em tempo real e realizar testes de requisições diretamente do navegador.
+
+* **URL de Acesso local:** `http://localhost:3000/api`
+
+Para visualizar a documentação:
+1. Certifique-se de iniciar a aplicação (modo desenvolvimento ou produção).
+2. Abra seu navegador de preferência e navegue até `http://localhost:3000/api`.
 
 ---
 
