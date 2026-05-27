@@ -14,7 +14,25 @@ async function bootstrap() {
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
+    SwaggerModule.setup('api', app, document, {
+        customCssUrl:
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+        customJs: [
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js',
+        ],
+        customCss: `
+            .swagger-ui .topbar a img {
+                content: url('/logo.svg') !important;
+                max-height: 40px;
+            }
+            .opblock-section-header:has(+ .parameters-container),
+            .parameters-container,
+            .try-out {
+                display: none !important;
+            }
+        `,
+    });
 
     await app.listen(process.env.PORT ?? 3000);
 }

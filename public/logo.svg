@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Deep Dark Base with subtle modern rounded corners -->
+  <rect width="256" height="256" fill="#050505" rx="40"/>
+  
+  <!-- Ambient Particle Network Layer (Subtle Nodes & Connections) -->
+  <circle cx="36" cy="48" r="4" fill="#00d2ff" opacity="0.3"/>
+  <circle cx="86" cy="24" r="5" fill="#00d2ff" opacity="0.15"/>
+  <circle cx="216" cy="42" r="3" fill="#00d2ff" opacity="0.4"/>
+  <circle cx="226" cy="186" r="4" fill="#00d2ff" opacity="0.2"/>
+  <circle cx="56" cy="216" r="5" fill="#00d2ff" opacity="0.15"/>
+  <circle cx="106" cy="236" r="3" fill="#00d2ff" opacity="0.3"/>
+  <circle cx="186" cy="226" r="6" fill="#00d2ff" opacity="0.25"/>
+  <circle cx="26" cy="136" r="2.5" fill="#00d2ff" opacity="0.2"/>
+  
+  <!-- Faint Network Node Links mimicking WebGL Connections -->
+  <line x1="36" y1="48" x2="86" y2="24" stroke="#00d2ff" stroke-width="1.5" opacity="0.15" />
+  <line x1="226" y1="186" x2="186" y2="226" stroke="#00d2ff" stroke-width="1.5" opacity="0.15" />
+  <line x1="56" y1="216" x2="106" y2="236" stroke="#00d2ff" stroke-width="1.5" opacity="0.15" />
+
+  <!-- "OZYRIS" Broken Optical "O" Ring (Software Architecture Concept) -->
+  <path 
+    d="M 128 64 A 64 64 0 1 0 192 128" 
+    fill="none" 
+    stroke="#ffffff" 
+    stroke-width="26" 
+    opacity="0.95"
+  />
+
+  <!-- The Main "Core / Super-Particle" Cyan Accent Dot -->
+  <circle cx="180" cy="74" r="15" fill="#00d2ff"/>
+</svg>

@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
+import { ProjectDto } from './dto/project.dto';
 
 /**
  * Controller responsável por expor as rotas relacionadas aos projetos.
@@ -26,8 +27,10 @@ export class ProjectsController {
     @ApiResponse({
         status: 200,
         description: 'Lista de projetos retornada com sucesso.',
+        type: ProjectDto,
+        isArray: true,
     })
-    getProjects() {
+    getProjects(): ProjectDto[] {
         return [
             {
                 name: 'Imports Manos',

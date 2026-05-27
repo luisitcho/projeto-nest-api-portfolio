@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { TechnologiesService, Technology } from './technologies.service';
+import { TechnologiesService } from './technologies.service';
+import { TechnologyDto } from './dto/technology.dto';
 
 /**
  * Controller responsável por gerenciar a rota de tecnologias/cursos.
@@ -21,8 +22,10 @@ export class TechnologiesController {
     @ApiResponse({
         status: 200,
         description: 'Lista de tecnologias retornada com sucesso.',
+        type: TechnologyDto,
+        isArray: true,
     })
-    getTechnologies(): Technology[] {
+    getTechnologies(): TechnologyDto[] {
         return this.technologiesService.getTechnologies();
     }
 }
