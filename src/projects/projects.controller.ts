@@ -34,7 +34,7 @@ export class ProjectsController {
         return [
             {
                 name: 'Portfolio API',
-                title: 'Projeto Node.js: Portfolio API',
+                title: 'Projeto Nest.js: Portfolio API',
                 image: '/img/projects/api.png',
                 category: 'Projeto Pessoal',
                 date: '05/2026',
