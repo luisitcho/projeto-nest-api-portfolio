@@ -34,7 +34,7 @@ export class ProjectsController {
         return [
             {
                 name: 'Portfolio API',
-                title: 'API centralizada para gestão de projetos e competências',
+                title: 'Projeto Node.js: Portfolio API',
                 image: '/img/projects/api.png',
                 category: 'Projeto Pessoal',
                 date: '05/2026',
