@@ -309,7 +309,7 @@ export class TechnologiesService {
                 repositories: [
                     {
                         name: 'Repositório (2025)',
-                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/tree/main/1-chronos-pomodoro',
+                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/',
                         current: false,
                         past: true,
                     },
@@ -329,8 +329,8 @@ export class TechnologiesService {
                 hide: false,
                 repositories: [
                     {
-                        name: 'Blog Next.js',
-                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/tree/main/2-blog',
+                        name: 'Next.js',
+                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/',
                         current: true,
                         past: false,
                     },
@@ -448,15 +448,15 @@ export class TechnologiesService {
                 hide: false,
                 repositories: [
                     {
-                        name: 'Backend NestJS',
-                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/tree/main/3-nest-for-next',
-                        current: true,
+                        name: 'NestJS',
+                        link: 'https://github.com/luisitcho/curso-react-otavio-2025/',
+                        current: false,
                         past: true,
                     },
                     {
                         name: 'Repositório (2025)',
                         link: 'https://github.com/luisitcho/curso-nest-otavio-2025',
-                        current: false,
+                        current: true,
                         past: true,
                     },
                 ],
