@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 import { ProjectDto } from './dto/project.dto';
@@ -30,12 +31,16 @@ export class ProjectsController {
         type: ProjectDto,
         isArray: true,
     })
-    getProjects(): ProjectDto[] {
+    getProjects(@Req() req: Request): ProjectDto[] {
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+        const host = req.get('Host');
+        const baseUrl = `${protocol}://${host}`;
+
         return [
             {
                 name: 'Qualicorp',
                 title: 'Criação da Home do site de RI',
-                image: '/img/projects/qualicorp.png',
+                image: `${baseUrl}/img/projects/qualicorp.png`,
                 category: 'MZ Group',
                 date: '06/2026',
                 href: 'https://ri.qualicorp.com.br/',
@@ -43,7 +48,7 @@ export class ProjectsController {
             {
                 name: 'Portfolio API',
                 title: 'Projeto Nest.js: Portfolio API',
-                image: '/img/projects/api.png',
+                image: `${baseUrl}/img/projects/api.png`,
                 category: 'Projeto Pessoal',
                 date: '05/2026',
                 href: 'https://projeto-api-portfolio.vercel.app/',
@@ -51,7 +56,7 @@ export class ProjectsController {
             {
                 name: 'Imports Manos',
                 title: 'Criação do site para loja virtual',
-                image: '/img/projects/imports-manos.png',
+                image: `${baseUrl}/img/projects/imports-manos.png`,
                 category: 'Ozyris',
                 date: '04/2026',
                 href: 'https://importsmanos.com.br/',
@@ -59,7 +64,7 @@ export class ProjectsController {
             {
                 name: 'Banco do Brasil Asset',
                 title: 'Criação do site para fundos',
-                image: '/img/projects/bbasset.png',
+                image: `${baseUrl}/img/projects/bbasset.png`,
                 category: 'MZ Group',
                 date: '01/2026',
                 href: 'https://www.bbasset.com.br/',
@@ -67,7 +72,7 @@ export class ProjectsController {
             {
                 name: 'Anima Mundi Psicoterapia',
                 title: 'Criação do site institucional',
-                image: '/img/projects/animamundi.png',
+                image: `${baseUrl}/img/projects/animamundi.png`,
                 category: 'HTML Brasil',
                 date: '01/2026',
                 href: 'https://animamundipsicoterapia.com.br/',
@@ -75,7 +80,7 @@ export class ProjectsController {
             {
                 name: 'Orion Transmissão',
                 title: 'Criação da Home do site de RI',
-                image: '/img/projects/oriontransmissao.png',
+                image: `${baseUrl}/img/projects/oriontransmissao.png`,
                 category: 'MZ Group',
                 date: '08/2025',
                 href: 'https://www.oriontransmissao.com.br/',
@@ -83,7 +88,7 @@ export class ProjectsController {
             {
                 name: 'Caixa Econômica RI',
                 title: 'Criação da Home do site de RI',
-                image: '/img/projects/caixa-economica.png',
+                image: `${baseUrl}/img/projects/caixa-economica.png`,
                 category: 'MZ Group',
                 date: '08/2025',
                 href: 'https://ri.caixa.gov.br/',
@@ -91,7 +96,7 @@ export class ProjectsController {
             {
                 name: 'Chronos Pomodoro',
                 title: 'Projeto React: Chronos Pomodoro',
-                image: '/img/projects/chronos-pomodoro.png',
+                image: `${baseUrl}/img/projects/chronos-pomodoro.png`,
                 category: 'Projeto Pessoal',
                 date: '07/2025',
                 href: 'https://luisitcho-chronos-pomodoro.vercel.app/',
@@ -99,7 +104,7 @@ export class ProjectsController {
             {
                 name: 'Buscador de CEP',
                 title: 'Projeto Python: Buscador de CEP',
-                image: '/img/projects/buscador-cep.png',
+                image: `${baseUrl}/img/projects/buscador-cep.png`,
                 category: 'Projeto Pessoal',
                 date: '06/2025',
                 href: 'https://projeto-python-buscador-cep.onrender.com/',
@@ -107,7 +112,7 @@ export class ProjectsController {
             {
                 name: 'DBLab Connect',
                 title: 'Criação do site Institucional',
-                image: '/img/projects/dblab.png',
+                image: `${baseUrl}/img/projects/dblab.png`,
                 category: 'HTML Brasil',
                 date: '05/2025',
                 href: 'https://dblab.com.br/',
@@ -115,7 +120,7 @@ export class ProjectsController {
             {
                 name: 'Art Life Pintura',
                 title: 'Criação do site Institucional',
-                image: '/img/projects/artlife.png',
+                image: `${baseUrl}/img/projects/artlife.png`,
                 category: 'HTML Brasil',
                 date: '04/2025',
                 href: 'https://artlifepintura.com.br/',
@@ -123,7 +128,7 @@ export class ProjectsController {
             {
                 name: 'Dashboard Supermarket',
                 title: 'Projeto Python: Dashboard Supermarket',
-                image: '/img/projects/dashboard-supermarket.png',
+                image: `${baseUrl}/img/projects/dashboard-supermarket.png`,
                 category: 'Projeto Pessoal',
                 date: '03/2025',
                 href: 'https://github.com/luisitcho/projeto-python-dashboard-supermarket',
@@ -131,7 +136,7 @@ export class ProjectsController {
             {
                 name: 'Cadiz',
                 title: 'Criação do site de RI',
-                image: '/img/projects/cadiz.png',
+                image: `${baseUrl}/img/projects/cadiz.png`,
                 category: 'MZ Group',
                 date: '12/2024',
                 href: 'https://investors.cadizinc.com/',
@@ -139,7 +144,7 @@ export class ProjectsController {
             {
                 name: 'Alares',
                 title: 'Criação do site de RI',
-                image: '/img/projects/alares.png',
+                image: `${baseUrl}/img/projects/alares.png`,
                 category: 'MZ Group',
                 date: '06/2024',
                 href: 'https://ri.alaresinternet.com.br/',
@@ -147,7 +152,7 @@ export class ProjectsController {
             {
                 name: 'CSN ESG',
                 title: 'Criação do Institucional',
-                image: '/img/projects/csn-esg.png',
+                image: `${baseUrl}/img/projects/csn-esg.png`,
                 category: 'MZ Group',
                 date: '04/2024',
                 href: 'https://esg.csn.com.br/',
@@ -155,7 +160,7 @@ export class ProjectsController {
             {
                 name: 'Allied',
                 title: 'Criação do site de RI',
-                image: '/img/projects/alliedbrasil.png',
+                image: `${baseUrl}/img/projects/alliedbrasil.png`,
                 category: 'MZ Group',
                 date: '04/2024',
                 href: 'https://ri.alliedbrasil.com.br/',
@@ -163,7 +168,7 @@ export class ProjectsController {
             {
                 name: 'Vipal Borrachas',
                 title: 'Criação do site de RI',
-                image: '/img/projects/vipal.png',
+                image: `${baseUrl}/img/projects/vipal.png`,
                 category: 'MZ Group',
                 date: '04/2024',
                 href: 'https://ri.vipal.com/',
@@ -171,7 +176,7 @@ export class ProjectsController {
             {
                 name: 'Massimo Motor',
                 title: 'Criação do site de RI',
-                image: '/img/projects/massimomotor.png',
+                image: `${baseUrl}/img/projects/massimomotor.png`,
                 category: 'MZ Group',
                 date: '04/2024',
                 href: 'https://ir.massimomotor.com/',
@@ -179,7 +184,7 @@ export class ProjectsController {
             {
                 name: 'Neoenergia',
                 title: 'Criação do site de RI',
-                image: '/img/projects/neoenergia.png',
+                image: `${baseUrl}/img/projects/neoenergia.png`,
                 category: 'MZ Group',
                 date: '11/2023',
                 href: 'https://ri.neoenergia.com/',
@@ -187,7 +192,7 @@ export class ProjectsController {
             {
                 name: 'Angá Asset',
                 title: 'Criação do site Institucional',
-                image: '/img/projects/angaasset.png',
+                image: `${baseUrl}/img/projects/angaasset.png`,
                 category: 'MZ Group',
                 date: '11/2023',
                 href: 'https://www.angaasset.com.br/',
@@ -195,7 +200,7 @@ export class ProjectsController {
             {
                 name: 'Ecorodovias',
                 title: 'Redesign do site de RI',
-                image: '/img/projects/ecorodovias.png',
+                image: `${baseUrl}/img/projects/ecorodovias.png`,
                 category: 'MZ Group',
                 date: '07/2023',
                 href: 'https://ri.ecorodovias.com.br/',
@@ -203,7 +208,7 @@ export class ProjectsController {
             {
                 name: 'Mercado Livre',
                 title: 'Criação do site de RI',
-                image: '/img/projects/mercadolivre.png',
+                image: `${baseUrl}/img/projects/mercadolivre.png`,
                 category: 'MZ Group',
                 date: '07/2023',
                 href: 'https://investor.mercadolibre.com/',
@@ -211,7 +216,7 @@ export class ProjectsController {
             {
                 name: 'Foresea',
                 title: 'Criação do site de RI',
-                image: '/img/projects/foresea.png',
+                image: `${baseUrl}/img/projects/foresea.png`,
                 category: 'MZ Group',
                 date: '07/2023',
                 href: 'https://investors.foresea.com/',
@@ -219,7 +224,7 @@ export class ProjectsController {
             {
                 name: 'CVC RI',
                 title: 'Criação do site de RI',
-                image: '/img/projects/cvcri.png',
+                image: `${baseUrl}/img/projects/cvcri.png`,
                 category: 'MZ Group',
                 date: '03/2023',
                 href: 'https://www.cvccorp.com.br/ri/',
@@ -227,7 +232,7 @@ export class ProjectsController {
             {
                 name: 'CVC Corp',
                 title: 'Criação do site Institucional',
-                image: '/img/projects/cvccorp.png',
+                image: `${baseUrl}/img/projects/cvccorp.png`,
                 category: 'MZ Group',
                 date: '03/2023',
                 href: 'https://www.cvccorp.com.br/',
@@ -235,7 +240,7 @@ export class ProjectsController {
             {
                 name: 'RYVYL',
                 title: 'Criação do site de RI',
-                image: '/img/projects/ryvyl.png',
+                image: `${baseUrl}/img/projects/ryvyl.png`,
                 category: 'MZ Group',
                 date: '12/2022',
                 href: 'https://investors.ryvyl.com/',
@@ -243,7 +248,7 @@ export class ProjectsController {
             {
                 name: 'SurgePays',
                 title: 'Criação do site de RI',
-                image: '/img/projects/surgepays.png',
+                image: `${baseUrl}/img/projects/surgepays.png`,
                 category: 'MZ Group',
                 date: '08/2022',
                 href: 'https://ir.surgepays.com/',
@@ -251,7 +256,7 @@ export class ProjectsController {
             {
                 name: 'Commit Gás',
                 title: 'Criação do site de RI',
-                image: '/img/projects/commitgas.png',
+                image: `${baseUrl}/img/projects/commitgas.png`,
                 category: 'MZ Group',
                 date: '08/2022',
                 href: 'https://www.commitgas.com/',
@@ -259,7 +264,7 @@ export class ProjectsController {
             {
                 name: 'Essentia Energia',
                 title: 'Criação do site de RI',
-                image: '/img/projects/essentiaenergia.png',
+                image: `${baseUrl}/img/projects/essentiaenergia.png`,
                 category: 'MZ Group',
                 date: '06/2022',
                 href: 'https://ri.essentiaenergia.com.br/',
@@ -267,7 +272,7 @@ export class ProjectsController {
             {
                 name: 'AgroGalaxy',
                 title: 'Criação de página para ESG',
-                image: '/img/projects/agrogalaxy.png',
+                image: `${baseUrl}/img/projects/agrogalaxy.png`,
                 category: 'MZ Group',
                 date: '03/2022',
                 href: 'https://ri.agrogalaxy.com.br/esg/',
@@ -275,7 +280,7 @@ export class ProjectsController {
             {
                 name: 'Omega Energia',
                 title: 'Redesign do site de RI',
-                image: '/img/projects/omegaenergia.png',
+                image: `${baseUrl}/img/projects/omegaenergia.png`,
                 category: 'MZ Group',
                 date: '02/2022',
                 href: 'https://ri.omegaenergia.com.br/',
@@ -283,7 +288,7 @@ export class ProjectsController {
             {
                 name: 'Rodobens',
                 title: 'Mudanças de marca no site de RI',
-                image: '/img/projects/rodobens.png',
+                image: `${baseUrl}/img/projects/rodobens.png`,
                 category: 'MZ Group',
                 date: '01/2022',
                 href: 'https://ri.rodobens.com.br/',
