@@ -10,7 +10,7 @@ import { ProjectDto } from './dto/project.dto';
 @ApiTags('Projetos')
 @Controller('projects')
 export class ProjectsController {
-    constructor(private readonly projectsService: ProjectsService) {}
+    constructor(private readonly projectsService: ProjectsService) { }
 
     /**
      * Retorna a lista completa de projetos desenvolvidos.
@@ -32,6 +32,14 @@ export class ProjectsController {
     })
     getProjects(): ProjectDto[] {
         return [
+            {
+                name: 'Qualicorp',
+                title: 'Criação da Home do site de RI',
+                image: '/img/projects/qualicorp.png',
+                category: 'MZ Group',
+                date: '06/2026',
+                href: 'https://ri.qualicorp.com.br/',
+            },
             {
                 name: 'Portfolio API',
                 title: 'Projeto Nest.js: Portfolio API',
