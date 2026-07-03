@@ -38,6 +38,14 @@ export class ProjectsController {
 
         return [
             {
+                name: 'GEN Restaurant Group',
+                title: 'Criação da Home do site de RI',
+                image: `${baseUrl}/img/projects/genkoreanbbq.png`,
+                category: 'MZ Group',
+                date: '07/2026',
+                href: 'https://investor.genkoreanbbq.com/',
+            },
+            {
                 name: 'Qualicorp',
                 title: 'Criação da Home do site de RI',
                 image: `${baseUrl}/img/projects/qualicorp.png`,
