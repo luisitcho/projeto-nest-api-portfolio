@@ -308,6 +308,12 @@ export class TechnologiesService {
                 ],
                 repositories: [
                     {
+                        name: 'Repositório (2026)',
+                        link: 'https://github.com/luisitcho/curso-react-battisti-2026/',
+                        current: true,
+                        past: false,
+                    },
+                    {
                         name: 'Repositório (2025)',
                         link: 'https://github.com/luisitcho/curso-react-otavio-2025/',
                         current: false,
