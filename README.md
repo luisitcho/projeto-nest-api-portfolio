@@ -79,7 +79,8 @@ Retorna os metadados da aplicação, versão e as rotas disponíveis.
   "description": "API responsável por centralizar e disponibilizar os projetos e tecnologias/cursos utilizados nos sites Portfolio e Ozyris.",
   "routes": {
     "projects": "/projects",
-    "technologies": "/technologies"
+    "technologies": "/technologies",
+    "activity": "/technologies/activity"
   }
 }
 ```
@@ -141,6 +142,27 @@ Retorna a lista completa de competências técnicas, incluindo status de conclus
   }
 ]
 ```
+
+### 4. Atividade dos cursos em andamento
+Para cada curso em andamento (repositório com `current: true` e `past: false`), busca no GitHub a data do primeiro commit, a do último commit e o total de commits. O total vem do cabeçalho de paginação, então são no máximo duas chamadas ao GitHub por repositório.
+* **URL:** `/technologies/activity`
+* **Método:** `GET`
+* **Cache:** 1 hora em memória e na CDN (`Cache-Control: s-maxage=3600, stale-while-revalidate=86400`).
+* **Resposta Exemplo:**
+```json
+[
+  {
+    "name": "React",
+    "repository": "https://github.com/luisitcho/curso-react-battisti-2026/",
+    "firstCommit": "2026-01-12T21:04:33Z",
+    "lastCommit": "2026-07-20T18:30:00Z",
+    "commits": 84
+  }
+]
+```
+
+> [!NOTE]
+> Sem login, o GitHub aceita 60 consultas por hora. Para subir o limite para 5.000, crie um token sem permissões extras e defina a variável de ambiente `GITHUB_TOKEN` (na Vercel: Settings → Environment Variables). Se o GitHub não responder, os campos vêm como `null` e a rota continua respondendo normalmente.
 
 ---
 

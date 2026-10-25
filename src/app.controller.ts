@@ -40,6 +40,7 @@ export class AppController {
             routes: {
                 projects: '/projects',
                 technologies: '/technologies',
+                activity: '/technologies/activity',
                 swagger: '/api',
             },
         };
