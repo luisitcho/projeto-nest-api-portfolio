@@ -78,7 +78,7 @@ export class TechnologiesService {
                 ],
             },
             {
-                name: 'Jquery',
+                name: 'jQuery',
                 category: 'Front-end',
                 icon: 'SiJquery',
                 completed: true,
