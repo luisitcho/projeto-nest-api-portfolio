@@ -74,9 +74,9 @@ Retorna os metadados da aplicação, versão e as rotas disponíveis.
 ```json
 {
   "name": "Portfolio API",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Luis Henrique",
-  "description": "API responsável por centralizar e disponibilizar os projetos e tecnologias/cursos utilizados nos sites Portfolio e Ozyris.",
+  "description": "API que centraliza os projetos, as tecnologias/cursos e a atividade no GitHub dos cursos em andamento (primeiro commit, último commit e total), consumidos pelos sites Portfolio e Ozyris. A documentação interativa está disponível em /api.",
   "routes": {
     "projects": "/projects",
     "technologies": "/technologies",

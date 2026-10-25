@@ -10,7 +10,7 @@ async function bootstrap() {
         .setDescription(
             'Documentação interativa das rotas da API do Portfolio e Ozyris.',
         )
-        .setVersion('1.0.0')
+        .setVersion('1.1.0')
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

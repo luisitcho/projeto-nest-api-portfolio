@@ -56,7 +56,7 @@ export class ProjectsController {
             {
                 name: 'Portfolio API',
                 title: 'Projeto Nest.js: Portfolio API',
-                image: `${baseUrl}/img/projects/api.png`,
+                image: `${baseUrl}/img/projects/portfolio-api.png`,
                 category: 'Projeto Pessoal',
                 date: '05/2026',
                 href: 'https://projeto-api-portfolio.vercel.app/',
