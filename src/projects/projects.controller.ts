@@ -59,7 +59,7 @@ export class ProjectsController {
                 image: `${baseUrl}/img/projects/portfolio-api.png`,
                 category: 'Projeto Pessoal',
                 date: '05/2026',
-                href: 'https://projeto-api-portfolio.vercel.app/',
+                href: 'https://api-portfolio.luisitcho.com.br/',
             },
             {
                 name: 'Imports Manos',
@@ -107,7 +107,7 @@ export class ProjectsController {
                 image: `${baseUrl}/img/projects/chronos-pomodoro.png`,
                 category: 'Projeto Pessoal',
                 date: '07/2025',
-                href: 'https://luisitcho-chronos-pomodoro.vercel.app/',
+                href: 'https://chronos-pomodoro.luisitcho.com.br/',
             },
             {
                 name: 'Buscador de CEP',
