@@ -9,6 +9,8 @@ import * as sharp from 'sharp';
 const PUBLIC_DIR = join(__dirname, '..', '..', 'public');
 const CACHE_DIR = join(tmpdir(), 'api-portfolio-webp');
 const WIDTHS = [320, 640, 960, 1280, 1600, 1920];
+// Alturas de recorte permitidas (proporção 16:10 das capas); lista fechada evita gerar variações sem fim
+const HEIGHTS = [200, 228, 400, 456, 600, 800, 912, 1000, 1200];
 const DEFAULT_WIDTH = 1920; // sem ?w=, mantém a largura original (os prints têm até 1920px)
 const CONVERTIBLE = /\.(png|jpe?g)$/i;
 
@@ -24,8 +26,19 @@ const widthFrom = (query: unknown): number => {
     return WIDTHS.find((w) => w >= asked) ?? WIDTHS[WIDTHS.length - 1];
 };
 
+/** Altura pedida em ?h= (recorte a partir do topo), arredondada para a próxima permitida; null mantém a proporção. */
+const heightFrom = (query: unknown): number | null => {
+    const asked = Number(query);
+    if (!Number.isFinite(asked) || asked <= 0) return null;
+    return HEIGHTS.find((h) => h >= asked) ?? HEIGHTS[HEIGHTS.length - 1];
+};
+
 /** Gera (uma vez) a versão WebP da imagem e devolve o caminho do arquivo em cache. */
-const convert = async (source: string, width: number): Promise<string> => {
+const convert = async (
+    source: string,
+    width: number,
+    height: number | null,
+): Promise<string> => {
     const { mtimeMs } = await stat(source);
     const name = source
         .slice(PUBLIC_DIR.length + 1)
@@ -33,7 +46,7 @@ const convert = async (source: string, width: number): Promise<string> => {
         .replace(CONVERTIBLE, '');
     const target = join(
         CACHE_DIR,
-        `${name}-${width}-${Math.floor(mtimeMs)}.webp`,
+        `${name}-${width}${height ? `x${height}` : ''}-${Math.floor(mtimeMs)}.webp`,
     );
     if (existsSync(target)) return target;
 
@@ -43,7 +56,11 @@ const convert = async (source: string, width: number): Promise<string> => {
     const job = (async () => {
         const temporary = `${target}.${process.pid}.tmp`;
         await sharp(source)
-            .resize({ width, withoutEnlargement: true })
+            .resize(
+                height
+                    ? { width, height, fit: 'cover', position: 'top' }
+                    : { width, withoutEnlargement: true },
+            )
             .webp({ quality: 82 })
             .toFile(temporary);
         await rename(temporary, target);
@@ -57,7 +74,7 @@ const convert = async (source: string, width: number): Promise<string> => {
 /**
  * Entrega as imagens de /img em WebP leve para quem aceita WebP.
  * O arquivo original continua no repositório; quem não aceita WebP recebe o original.
- * Aceita ?w= (320 a 1920) para miniaturas. A conversão é feita uma vez e fica em cache;
+ * Aceita ?w= (320 a 1920) para miniaturas e ?h= para recortar a partir do topo (capas). A conversão é feita uma vez e fica em cache;
  * se o arquivo original mudar, uma versão nova é gerada.
  */
 export const webpMiddleware = async (
@@ -77,7 +94,11 @@ export const webpMiddleware = async (
     }
 
     try {
-        const file = await convert(source, widthFrom(req.query.w));
+        const file = await convert(
+            source,
+            widthFrom(req.query.w),
+            heightFrom(req.query.h),
+        );
         res.setHeader('Content-Type', 'image/webp');
         res.setHeader('Cache-Control', 'public, max-age=86400');
         res.setHeader('Vary', 'Accept');
