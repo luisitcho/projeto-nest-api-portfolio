@@ -59,7 +59,7 @@ export class ProjectsController {
                 image: `${baseUrl}/img/projects/portfolio-api.png`,
                 category: 'Projeto Pessoal',
                 date: '05/2026',
-                href: 'https://api-portfolio.luisitcho.com.br/',
+                href: `${baseUrl}/`,
             },
             {
                 name: 'Imports Manos',
