@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { webpMiddleware } from './images/webp.middleware';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+
+    // Imagens de /img em WebP leve (antes dos arquivos estáticos)
+    app.use('/img', webpMiddleware);
 
     const config = new DocumentBuilder()
         .setTitle('Portfolio API')
