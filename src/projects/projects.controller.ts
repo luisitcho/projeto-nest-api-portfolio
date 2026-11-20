@@ -54,6 +54,14 @@ export class ProjectsController {
                 href: 'https://ri.qualicorp.com.br/',
             },
             {
+                name: 'Atlas Renewable Energy',
+                title: 'Criação da página de login do Atlas Connect',
+                image: `${baseUrl}/img/projects/atlasconnect.png`,
+                category: 'MZ Group',
+                date: '06/2026',
+                href: 'https://atlasconnect.atlasrenewableenergy.com/login/',
+            },
+            {
                 name: 'Constellation',
                 title: 'Criação da Home do site de RI',
                 image: `${baseUrl}/img/projects/constellation.png`,
