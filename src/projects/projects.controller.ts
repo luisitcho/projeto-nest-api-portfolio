@@ -38,6 +38,14 @@ export class ProjectsController {
 
         return [
             {
+                name: 'Ouro Preto Investimentos',
+                title: 'Criação do site Institucional',
+                image: `${baseUrl}/img/projects/ouropretoinvestimentos.png`,
+                category: 'MZ Group',
+                date: '10/2026',
+                href: 'https://www.ouropretoinvestimentos.com.br/',
+            },
+            {
                 name: 'GEN Restaurant Group',
                 title: 'Criação da Home do site de RI',
                 image: `${baseUrl}/img/projects/genkoreanbbq.png`,
