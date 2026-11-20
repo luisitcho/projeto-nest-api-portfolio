@@ -38,6 +38,14 @@ export class ProjectsController {
 
         return [
             {
+                name: 'Tenda',
+                title: 'Criação da Home do site de RI',
+                image: `${baseUrl}/img/projects/tenda.png`,
+                category: 'MZ Group',
+                date: '10/2026',
+                href: 'https://ri.tenda.com/',
+            },
+            {
                 name: 'Ouro Preto Investimentos',
                 title: 'Criação do site Institucional',
                 image: `${baseUrl}/img/projects/ouropretoinvestimentos.png`,
