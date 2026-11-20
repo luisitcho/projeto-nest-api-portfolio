@@ -38,6 +38,14 @@ export class ProjectsController {
 
         return [
             {
+                name: 'Ambipar',
+                title: 'Criação do site Institucional',
+                image: `${baseUrl}/img/projects/ambipar.png`,
+                category: 'MZ Group',
+                date: '11/2026',
+                href: 'https://www.ambipar.com/',
+            },
+            {
                 name: 'Tenda',
                 title: 'Criação da Home do site de RI',
                 image: `${baseUrl}/img/projects/tenda.png`,
