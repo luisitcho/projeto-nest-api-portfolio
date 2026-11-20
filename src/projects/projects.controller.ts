@@ -42,7 +42,7 @@ export class ProjectsController {
                 title: 'Criação da Home do site de RI',
                 image: `${baseUrl}/img/projects/genkoreanbbq.png`,
                 category: 'MZ Group',
-                date: '07/2026',
+                date: '06/2026',
                 href: 'https://investor.genkoreanbbq.com/',
             },
             {
