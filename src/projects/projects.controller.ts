@@ -70,6 +70,14 @@ export class ProjectsController {
                 href: 'https://importsmanos.com.br/',
             },
             {
+                name: 'Grupo Bild',
+                title: 'Criação da página de login do portal de RI',
+                image: `${baseUrl}/img/projects/grupobild.png`,
+                category: 'MZ Group',
+                date: '01/2026',
+                href: 'http://ri.grupobild.com.br/',
+            },
+            {
                 name: 'Banco do Brasil Asset',
                 title: 'Criação do site para fundos',
                 image: `${baseUrl}/img/projects/bbasset.png`,
