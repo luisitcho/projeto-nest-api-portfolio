@@ -62,6 +62,14 @@ export class ProjectsController {
                 href: `${baseUrl}/`,
             },
             {
+                name: 'JHSF',
+                title: 'Criação da Home do site de RI',
+                image: `${baseUrl}/img/projects/jhsf.png`,
+                category: 'MZ Group',
+                date: '04/2026',
+                href: 'https://ri.jhsf.com.br/',
+            },
+            {
                 name: 'Imports Manos',
                 title: 'Criação do site para loja virtual',
                 image: `${baseUrl}/img/projects/imports-manos.png`,
