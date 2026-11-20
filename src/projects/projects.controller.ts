@@ -54,6 +54,14 @@ export class ProjectsController {
                 href: 'https://ri.qualicorp.com.br/',
             },
             {
+                name: 'Constellation',
+                title: 'Criação da Home do site de RI',
+                image: `${baseUrl}/img/projects/constellation.png`,
+                category: 'MZ Group',
+                date: '05/2026',
+                href: 'https://ir.theconstellation.com/',
+            },
+            {
                 name: 'Portfolio API',
                 title: 'Projeto Nest.js: Portfolio API',
                 image: `${baseUrl}/img/projects/portfolio-api.png`,
