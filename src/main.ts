@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { webpMiddleware } from './images/webp.middleware';
+import { scheduleSitesRevalidation } from './revalidate/revalidate-sites';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -39,5 +40,8 @@ async function bootstrap() {
     });
 
     await app.listen(process.env.PORT ?? 3000);
+
+    // Avisa portfolio e Ozyris que os dados mudaram (ver src/revalidate/revalidate-sites.ts)
+    scheduleSitesRevalidation();
 }
 void bootstrap();

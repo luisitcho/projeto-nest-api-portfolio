@@ -14,6 +14,7 @@ Esta API serve como uma **fonte única de verdade** (Single Source of Truth) par
 - [Documentação Interativa (Swagger)](#documentacao-interativa-swagger)
 - [Estrutura do Modelo de Projeto](#estrutura-do-modelo-de-projeto)
 - [Estrutura do Modelo de Tecnologia](#estrutura-do-modelo-de-tecnologia)
+- [Atualização dos Sites a Cada Deploy](#atualizacao-dos-sites-a-cada-deploy)
 - [Como Executar o Projeto](#como-executar-o-projeto)
 - [Exemplo de Integração no Frontend](#exemplo-de-integracao-no-frontend)
 
@@ -48,6 +49,9 @@ graph TD
     
     API -->|1. GET /projects| Ozy[Projeto Ozyris <br> Frontend React/HTML]
     API -->|2. Servir Imagens estáticas <br> /img/projects/*| Ozy
+
+    API -.->|3. POST /api/revalidate <br> a cada deploy| Port
+    API -.->|3. POST /api/revalidate <br> a cada deploy| Ozy
 
     style API fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
     style Port fill:#efebe9,stroke:#4e342e,stroke-width:2px;
@@ -214,6 +218,37 @@ Cada item retornado na rota `/technologies` possui a seguinte estrutura:
 
 > [!NOTE]
 > Os ícones são retornados como `string` (ex: `"FaJsSquare"`). No frontend React, você pode mapear essas strings para os componentes de ícones reais importados de `react-icons`.
+
+---
+
+<a id="atualizacao-dos-sites-a-cada-deploy"></a>
+## Atualização dos Sites a Cada Deploy
+
+Os sites guardam os dados desta API em cache (1 hora no Next.js e algumas horas no Cloudflare). Para um projeto novo aparecer logo, a API avisa os sites quando o container novo sobe, o que acontece a cada deploy no Coolify:
+
+1. O push na `main` dispara o deploy no Coolify, que cria um container novo.
+2. Quando o container sobe, `scheduleSitesRevalidation()` (`src/revalidate/revalidate-sites.ts`, chamada em `src/main.ts`) espera 45 segundos, o tempo de o Coolify trocar o container antigo pelo novo.
+3. Em seguida chama `POST /api/revalidate` no [portfolio](https://github.com/luisitcho/portfolio) e no [Ozyris](https://github.com/luisitcho/ozyris), com o header `Authorization: Bearer <REVALIDATE_SECRET>`.
+4. Cada site invalida o cache do Next (tag `api-portfolio`) e limpa no Cloudflare as páginas que mostram os projetos: a home do portfolio e `/projetos` e `/links` do Ozyris.
+
+O resultado aparece no log do container, por exemplo:
+
+```
+[RevalidateSites] https://luisitcho.com.br/api/revalidate -> 200 {"revalidated":true,"tag":"api-portfolio","cloudflare":true,...}
+```
+
+| Variável (no Coolify) | Obrigatória | Padrão | Uso |
+|---|---|---|---|
+| `REVALIDATE_SECRET` | Sim | (nenhum) | Mesmo valor da variável `REVALIDATE_SECRET` dos dois sites. Sem ela, nada é chamado |
+| `REVALIDATE_URLS` | Não | as rotas dos dois sites | Rotas a chamar, separadas por vírgula |
+| `REVALIDATE_DELAY_MS` | Não | `45000` | Espera antes de chamar |
+
+Para forçar a atualização sem deploy, chame a rota de cada site na mão:
+
+```bash
+curl -X POST https://luisitcho.com.br/api/revalidate -H "Authorization: Bearer $REVALIDATE_SECRET"
+curl -X POST https://ozyris.com.br/api/revalidate -H "Authorization: Bearer $REVALIDATE_SECRET"
+```
 
 ---
 
