@@ -115,6 +115,8 @@ Retorna a lista completa dos projetos cadastrados.
 ]
 ```
 
+* **Campo opcional `kind`:** tipo do trabalho (`RI`, `Institucional`, `ESG`, `E-commerce` ou `Produto`), usado nas abas da página de projetos do site da Ozyris. Quando ausente, o site deduz o tipo pelo `title`. Produtos próprios da Ozyris precisam de `"kind": "Produto"`, porque esse tipo nunca é deduzido pelo título.
+
 ### 3. Tecnologias / Cursos (Skills)
 Retorna a lista completa de competências técnicas, incluindo status de conclusão do aprendizado, certificados e repositórios de estudo.
 * **URL:** `/technologies`

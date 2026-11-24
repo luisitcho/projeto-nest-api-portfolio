@@ -1,4 +1,19 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
+/**
+ * Tipo do trabalho, usado nas abas da página de projetos do site da Ozyris.
+ * Opcional: sem ele, o site deduz o tipo pelo `title` (RI, ESG, E-commerce ou Institucional).
+ * `Produto` é para produtos próprios da Ozyris, que nunca são deduzidos pelo título.
+ */
+export const PROJECT_KINDS = [
+    'RI',
+    'Institucional',
+    'ESG',
+    'E-commerce',
+    'Produto',
+] as const;
+
+export type ProjectKind = (typeof PROJECT_KINDS)[number];
 
 export class ProjectDto {
     @ApiProperty({
@@ -37,4 +52,12 @@ export class ProjectDto {
         description: 'Link direto para o projeto online',
     })
     href: string;
+
+    @ApiPropertyOptional({
+        enum: PROJECT_KINDS,
+        example: 'Produto',
+        description:
+            'Tipo do trabalho. Opcional: quando ausente, o site deduz pelo título. Use "Produto" para produtos próprios da Ozyris.',
+    })
+    kind?: ProjectKind;
 }

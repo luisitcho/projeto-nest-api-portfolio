@@ -22,6 +22,8 @@ export class ProjectsController {
      * - category: Categoria/Origem do projeto (ex: 'Ozyris', 'MZ Group', 'HTML Brasil')
      * - date: Data de entrega (MM/AAAA)
      * - href: Link de acesso externo
+     * - kind (opcional): Tipo do trabalho ('RI', 'Institucional', 'ESG', 'E-commerce' ou 'Produto').
+     *   Sem ele, o site deduz o tipo pelo título; 'Produto' (produtos próprios da Ozyris) precisa ser explícito.
      */
     @Get()
     @ApiOperation({ summary: 'Listar todos os projetos' })
