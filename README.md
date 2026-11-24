@@ -78,11 +78,12 @@ Retorna os metadados da aplicação, versão e as rotas disponíveis.
 ```json
 {
   "name": "Portfolio API",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Luis Henrique",
   "description": "API que centraliza os projetos, as tecnologias/cursos e a atividade no GitHub dos cursos em andamento (primeiro commit, último commit e total), consumidos pelos sites Portfolio e Ozyris. A documentação interativa está disponível em /api.",
   "routes": {
     "projects": "/projects",
+    "products": "/products",
     "technologies": "/technologies",
     "activity": "/technologies/activity"
   }
@@ -116,6 +117,25 @@ Retorna a lista completa dos projetos cadastrados.
 ```
 
 * **Campo opcional `kind`:** tipo do trabalho (`RI`, `Institucional`, `ESG`, `E-commerce` ou `Produto`), usado nas abas da página de projetos do site da Ozyris. Quando ausente, o site deduz o tipo pelo `title`. Produtos próprios da Ozyris precisam de `"kind": "Produto"`, porque esse tipo nunca é deduzido pelo título.
+
+### 2.1 Produtos da Ozyris
+Retorna só os produtos próprios da Ozyris (ex.: Heru), usados na aba "Produtos" do site da Ozyris. Lê o mesmo cadastro de `/projects` e devolve os itens com `"kind": "Produto"`, então um produto é cadastrado uma única vez e aparece nas duas rotas. Lista vazia (`[]`) quando não houver nenhum.
+* **URL:** `/products`
+* **Método:** `GET`
+* **Resposta Exemplo:**
+```json
+[
+  {
+    "name": "Heru",
+    "title": "Monitor público do status de serviços online",
+    "image": "/img/projects/heru.png",
+    "category": "Ozyris",
+    "date": "12/2026",
+    "href": "https://herustatus.com.br/",
+    "kind": "Produto"
+  }
+]
+```
 
 ### 3. Tecnologias / Cursos (Skills)
 Retorna a lista completa de competências técnicas, incluindo status de conclusão do aprendizado, certificados e repositórios de estudo.

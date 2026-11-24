@@ -29,7 +29,7 @@ export class AppController {
     getRoot() {
         return {
             name: 'Portfolio API',
-            version: '1.1.0',
+            version: '1.2.0',
             author: 'Luis Henrique',
             description:
                 'API que centraliza os projetos, as tecnologias/cursos e a atividade no GitHub dos cursos em andamento (primeiro commit, último commit e total), consumidos pelos sites Portfolio e Ozyris. A documentação interativa está disponível em /api.',
@@ -39,6 +39,7 @@ export class AppController {
             },
             routes: {
                 projects: '/projects',
+                products: '/products',
                 technologies: '/technologies',
                 activity: '/technologies/activity',
                 swagger: '/api',
